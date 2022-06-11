@@ -4,13 +4,130 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>org.example</groupId>
-    <artifactId>NadezhdaLemekhova_LevelUp</artifactId>
+    <groupId>ru.levelp.at</groupId>
+    <artifactId>nadezhda-lemekhova-spring-2022-may</artifactId>
     <version>1.0-SNAPSHOT</version>
 
     <properties>
+        <!-- Project settings -->
         <maven.compiler.source>11</maven.compiler.source>
         <maven.compiler.target>11</maven.compiler.target>
+        <project.source.encoding>UTF-8</project.source.encoding>
+        <!-- dependencies -->
+        <checkstyle.version>10.2</checkstyle.version>
+        <testng.version>7.6.0</testng.version>
+        <commons-io.version>2.11.0</commons-io.version>
+
+        <!-- Plugins -->
+        <maven-compiler-plugin.version>3.10.1</maven-compiler-plugin.version>
+        <maven-compiler-plugin.encoding>UTF-8</maven-compiler-plugin.encoding>
+        <maven-resources-plugin.version>3.2.0</maven-resources-plugin.version>
+        <maven-checkstyle-plugin.version>3.1.2</maven-checkstyle-plugin.version>
+        <maven-surefire-plugin.version>3.0.0-M7</maven-surefire-plugin.version>
+
+        <!-- Project properties -->
+        <test.resources.base.dir>${project.basedir}/src/test/resources</test.resources.base.dir>
+        <suites.base.dir>${test.resources.base.dir}/ru/levelup/at</suites.base.dir>
+        <homework2.suite.base.dir>${suites.base.dir}/homework2/build/unit/testing/tools/suites</homework2.suite.base.dir>
     </properties>
+
+    <profiles>
+        <profile>
+            <id>all-tests</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <properties>
+                <test.suite.name>allTests.xml</test.suite.name>
+            </properties>
+        </profile>
+    </profiles>
+
+    <dependencies>
+        <dependency>
+            <groupId>commons-io</groupId>
+            <artifactId>commons-io</artifactId>
+            <version>${commons-io.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.testng</groupId>
+            <artifactId>testng</artifactId>
+            <version>${testng.version}</version>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>ru.calc</groupId>
+            <artifactId>calc</artifactId>
+            <version>1</version>
+            <scope>system</scope>
+            <systemPath>${project.basedir}/lib/calculator-1.0.jar</systemPath>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>${maven-compiler-plugin.version}</version>
+                <configuration>
+                    <encoding>${project.source.encoding}</encoding>
+                </configuration>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-resources-plugin</artifactId>
+                <version>${maven-resources-plugin.version}</version>
+                <configuration>
+                    <encoding>${project.source.encoding}</encoding>
+                </configuration>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>${maven-surefire-plugin.version}</version>
+                <configuration>
+                    <suiteXmlFiles>${homework2.suite.base.dir}/${test.suite.name}</suiteXmlFiles>
+                </configuration>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-checkstyle-plugin</artifactId>
+                <version>${maven-checkstyle-plugin.version}</version>
+                <dependencies>
+                    <dependency>
+                        <groupId>com.puppycrawl.tools</groupId>
+                        <artifactId>checkstyle</artifactId>
+                        <version>${checkstyle.version}</version>
+                    </dependency>
+                </dependencies>
+                <configuration>
+                    <configLocation>
+                        <!--  pay attention to use exact url for checkstyle plugin ruleset  -->
+                        https://raw.githubusercontent.com/khda91/leveup-code-checkers-configurations/main/checkstyle/checkstyle.xml
+                    </configLocation>
+                    <encoding>${project.source.encoding}</encoding>
+                    <includeTestSourceDirectory>true</includeTestSourceDirectory>
+                    <consoleOutput>true</consoleOutput>
+                    <failsOnError>true</failsOnError>
+                    <linkXRef>false</linkXRef>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>validate</id>
+                        <phase>validate</phase>
+                        <goals>
+                            <goal>check</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
 
 </project>

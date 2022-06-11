@@ -1,0 +1,12 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
+<suite name="Subtraction and division tests">
+  <test name="Subtraction and division tests">
+    <classes>
+      <class name="ru.levelup.at.homework2.CalcSubTest"/>
+      <class name="ru.levelup.at.homework2.CalcDivTest"/>
+    </classes>
+  </test>
+</suite>
+
+
+
