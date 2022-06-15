@@ -1,10 +1,9 @@
 package ru.levelup.at.homework2;
 
 import org.testng.Assert;
-import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
-public class CalcDivTest extends BaseCalcBeforeAfterHooksTest {
+public class CalcDivTest extends BaseCalcTest {
 
     @Test
     public void testDivLong() {

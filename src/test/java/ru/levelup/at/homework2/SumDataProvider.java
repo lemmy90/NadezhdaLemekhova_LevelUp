@@ -2,7 +2,7 @@ package ru.levelup.at.homework2;
 
 import org.testng.annotations.DataProvider;
 
-public class BaseDataProvider {
+public class SumDataProvider {
 
     @DataProvider (name = "Sum for long Data Provider")
     public Object[][] sumLongDataProvider() {

@@ -3,7 +3,7 @@ package ru.levelup.at.homework2;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-public class CalcCotangentTest extends BaseCalcBeforeAfterHooksTest {
+public class CalcCotangentTest extends BaseCalcTest {
 
     @Test
     public void testCotangentDouble() {

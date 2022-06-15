@@ -4,7 +4,7 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import ru.levelup.qa.at.calculator.Calculator;
 
-public abstract class BaseCalcBeforeAfterHooksTest {
+public abstract class BaseCalcTest {
 
     protected Calculator calculator;
 

@@ -3,7 +3,7 @@ package ru.levelup.at.homework2;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-public class CalcCosineTest extends BaseCalcBeforeAfterHooksTest {
+public class CalcCosineTest extends BaseCalcTest {
 
     @Test
     public void testCosineDouble() {
