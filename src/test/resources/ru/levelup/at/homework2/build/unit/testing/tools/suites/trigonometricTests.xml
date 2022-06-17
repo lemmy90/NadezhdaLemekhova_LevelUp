@@ -1,0 +1,14 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
+<suite name="Trigonometric tests">
+  <test name="Trigonometric tests">
+    <classes>
+      <class name="ru.levelup.at.homework2.CalcCosineTest"/>
+      <class name="ru.levelup.at.homework2.CalcSinusTest"/>
+      <class name="ru.levelup.at.homework2.CalcTangentTest"/>
+      <class name="ru.levelup.at.homework2.CalcCotangentTest"/>
+    </classes>
+  </test>
+</suite>
+
+
+

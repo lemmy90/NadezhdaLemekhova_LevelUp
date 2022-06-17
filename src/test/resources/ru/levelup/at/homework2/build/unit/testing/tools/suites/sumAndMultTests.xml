@@ -1,0 +1,12 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
+<suite name="Addition and multiplication tests">
+  <test name="Addition and multiplication tests">
+    <classes>
+      <class name="ru.levelup.at.homework2.CalcSumTest"/>
+      <class name="ru.levelup.at.homework2.CalcMultTest"/>
+    </classes>
+  </test>
+</suite>
+
+
+

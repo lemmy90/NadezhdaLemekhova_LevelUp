@@ -1,0 +1,20 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
+<suite name="All tests">
+  <test name="All tests">
+    <classes>
+      <class name="ru.levelup.at.homework2.CalcSumTest"/>
+      <class name="ru.levelup.at.homework2.CalcSubTest"/>
+      <class name="ru.levelup.at.homework2.CalcMultTest"/>
+      <class name="ru.levelup.at.homework2.CalcDivTest"/>
+      <class name="ru.levelup.at.homework2.CalcSqrtTest"/>
+      <class name="ru.levelup.at.homework2.CalcPowTest"/>
+      <class name="ru.levelup.at.homework2.CalcCosineTest"/>
+      <class name="ru.levelup.at.homework2.CalcSinusTest"/>
+      <class name="ru.levelup.at.homework2.CalcTangentTest"/>
+      <class name="ru.levelup.at.homework2.CalcCotangentTest"/>
+    </classes>
+  </test>
+</suite>
+
+
+
