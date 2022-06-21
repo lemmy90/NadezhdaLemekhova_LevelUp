@@ -70,6 +70,13 @@
                 <test.suite.name>trigonometric.xml</test.suite.name>
             </properties>
         </profile>
+
+        <profile>
+            <id>mailru-tests</id>
+            <properties>
+                <test.suite.name>mailruTests.xml</test.suite.name>
+            </properties>
+        </profile>
     </profiles>
 
     <dependencies>
