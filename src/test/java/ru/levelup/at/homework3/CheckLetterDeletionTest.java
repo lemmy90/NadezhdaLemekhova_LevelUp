@@ -9,11 +9,10 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-public class CrateNewLetterTest extends AbstractBaseLettersTest {
+public class CheckLetterDeletionTest extends AbstractBaseLettersTest {
 
-    @SuppressWarnings("checkstyle:Indentation")
     @Test
-    public void createNewLetterTest() throws InterruptedException {
+    public void checkLetterDeletionTest() {
 
         // open mail.ru
         driver.navigate().to(MAILRU_URL);
@@ -66,36 +65,6 @@ public class CrateNewLetterTest extends AbstractBaseLettersTest {
         bodyField.click();
         bodyField.sendKeys(LETTER_BODY);
 
-        //save draft
-        WebElement saveLetterButton = driver.findElement(By.cssSelector("[data-test-id='save']"));
-        saveLetterButton.click();
-
-        //close new letter window
-        WebElement closeNewLetterWindow = driver.findElement(By.xpath("//div[@class='container--8PdPf']//button[3]"));
-        closeNewLetterWindow.click();
-
-        //go to drafts
-        WebElement draftsFolder = driver.findElement(By.xpath("//a[@href='/drafts/']"));
-        draftsFolder.click();
-
-        WebElement newLetter = driver.findElement(By.xpath("//span[text()='" + LETTER_TITLE + random + "']"));
-        Assert.assertTrue(newLetter.isDisplayed());
-
-        newLetter.click();
-
-        //check address
-        WebElement letterAddress = driver.findElement(By.xpath("//div[@class='container--wpBSx']//span[1]"));
-        Assert.assertEquals(letterAddress.getText(), EMAIL);
-
-        //check title
-        WebElement letterTitle = driver.findElement(By.name("Subject"));
-        Assert.assertEquals(letterTitle.getAttribute("value"), LETTER_TITLE + random);
-
-        //check body
-        WebElement letterBody = driver
-            .findElement(By.xpath("//div[@role='textbox']/div[1]/div[1]/div[1]/div[1]/div[1]"));
-        Assert.assertEquals(letterBody.getText(), LETTER_BODY);
-
         //send the letter
         WebElement sendButton = driver.findElement(By.cssSelector("[data-test-id = 'send']"));
         sendButton.click();
@@ -106,21 +75,48 @@ public class CrateNewLetterTest extends AbstractBaseLettersTest {
                     .xpath("//div[@class='layer-sent-page']/div/div/span[contains(@class, 'button2')]")));
         closeAd.click();
 
-        //DONT FORGET TO UNCOMMENT THIS BOOLSHIT
-        /*Assert.assertTrue(wait
-             .until(ExpectedConditions
-                 .invisibilityOfElementLocated(By.xpath("//span[text()='" + LETTER_TITLE + random + "']"))));*/
+        //go to inbound
+        WebElement inboundFolder = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//a[@href='/inbox/']")));
+        inboundFolder.click();
 
-
-
-        //go to sent
-        WebElement sentFolder = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//a[@href='/sent/']")));
-
-        sentFolder.click();
+        //check that letter is shown in inbound folder
+        WebElement newLetter = driver.findElement(By.xpath("//span[text()='" + LETTER_TITLE + random + "']"));
         Assert.assertTrue(newLetter.isDisplayed());
 
+        //open letter
+        newLetter.click();
+
+        //check address
+        WebElement letterAddress = driver.findElement(By.xpath("//span[@class = 'letter-contact']"));
+        Assert.assertEquals(letterAddress.getAttribute("title"), EMAIL);
+
+        //check title
+        WebElement letterTitle = driver.findElement(By.xpath("//h2[@class = 'thread-subject']"));
+        Assert.assertEquals(letterTitle.getText(), LETTER_TITLE + random);
+
+        //check body
+        WebElement letterBody = driver
+            .findElement(By
+                .xpath("//div[@class='letter-body__body']"
+                    + "/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]"));
+        Assert.assertEquals(letterBody.getText(), LETTER_BODY);
+
+        //delete letter
+        WebElement deleteButton = driver.findElement(By.cssSelector("[data-title-shortcut = 'Del']"));
+        deleteButton.click();
+
+        //go to trash
+        WebElement trashFolder = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//a[@href='/trash/']")));
+        trashFolder.click();
+
+        //check that letter is shown in the Test folder
+        WebElement letterInTrash = driver.findElement(By.xpath("//span[text()='" + LETTER_TITLE + random + "']"));
+        Assert.assertTrue(letterInTrash.isDisplayed());
+
+        //open personal menu
         logoUserName.click();
 
+        //logout user
         WebElement logoutButton = driver.findElement(By.xpath("//div[@data-click-counter='75068944']"));
         logoutButton.click();
 
