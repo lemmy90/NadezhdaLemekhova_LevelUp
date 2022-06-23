@@ -31,9 +31,8 @@ public abstract class AbstractBaseLettersTest {
     @BeforeMethod
     public void setUp() {
         driver = new ChromeDriver();
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(60));
         driver.manage().window().maximize();
-        wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        wait = new WebDriverWait(driver, Duration.ofSeconds(20));
     }
 
     @AfterMethod
