@@ -19,6 +19,8 @@
         <commons-io.version>2.11.0</commons-io.version>
         <selenium-java.version>4.2.2</selenium-java.version>
         <webdrivermanager.version>5.2.0</webdrivermanager.version>
+        <javafaker.version>1.0.2</javafaker.version>
+        <snakeyaml.version>1.30</snakeyaml.version>
 
         <!-- Plugins -->
         <maven-compiler-plugin.version>3.10.1</maven-compiler-plugin.version>
@@ -30,14 +32,12 @@
         <test.resources.base.dir>${project.basedir}/src/test/resources</test.resources.base.dir>
         <suites.base.dir>${test.resources.base.dir}/ru/levelup/at</suites.base.dir>
         <homework2.suite.base.dir>${suites.base.dir}/homework2/build/unit/testing/tools/suites</homework2.suite.base.dir>
+        <homework3.suite.base.dir>${suites.base.dir}/homework3</homework3.suite.base.dir>
     </properties>
 
     <profiles>
         <profile>
             <id>all-tests</id>
-            <activation>
-                <activeByDefault>true</activeByDefault>
-            </activation>
             <properties>
                 <test.suite.name>allTests.xml</test.suite.name>
             </properties>
@@ -68,6 +68,16 @@
             <id>trigonometric-tests</id>
             <properties>
                 <test.suite.name>trigonometric.xml</test.suite.name>
+            </properties>
+        </profile>
+
+        <profile>
+            <id>mailru-tests</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <properties>
+                <test.suite.name>mailruTests.xml</test.suite.name>
             </properties>
         </profile>
     </profiles>
@@ -105,6 +115,24 @@
             <artifactId>webdrivermanager</artifactId>
             <version>${webdrivermanager.version}</version>
         </dependency>
+
+        <dependency>
+            <groupId>com.github.javafaker</groupId>
+            <artifactId>javafaker</artifactId>
+            <version>${javafaker.version}</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.yaml</groupId>
+                    <artifactId>snakeyaml</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+
+        <dependency>
+            <groupId>org.yaml</groupId>
+            <artifactId>snakeyaml</artifactId>
+            <version>${snakeyaml.version}</version>
+        </dependency>
     </dependencies>
 
     <build>
@@ -132,7 +160,9 @@
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>${maven-surefire-plugin.version}</version>
                 <configuration>
-                    <suiteXmlFiles>${homework2.suite.base.dir}/${test.suite.name}</suiteXmlFiles>
+                    <suiteXmlFiles>
+                        ${homework3.suite.base.dir}/${test.suite.name}
+                    </suiteXmlFiles>
                 </configuration>
             </plugin>
 
