@@ -77,7 +77,7 @@ public class CheckLetterDeletionTest extends AbstractBaseLettersTest {
         //go to trash
         mailboxHomePage.goToTrashFolder();
 
-        //check that letter is shown in the Test folder
+        //check that letter is shown in the trash folder
         Assert.assertTrue(letterList.isNewLetterDisplayed(LETTER_TITLE, random));
 
         //open personal menu
