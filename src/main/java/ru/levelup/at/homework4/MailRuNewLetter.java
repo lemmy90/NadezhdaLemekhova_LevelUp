@@ -70,21 +70,4 @@ public class MailRuNewLetter {
         wait.until(ExpectedConditions.elementToBeClickable(closeAdButton)).click();
     }
 
-    public boolean isNewLetterDisplayed(String title, int number) {
-        return wait
-            .until(ExpectedConditions
-                .elementToBeClickable(By.xpath("//span[text()='" + title + number + "']"))).isDisplayed();
-    }
-
-    public boolean isSelfNewLetterDisplayed(String title, int number) {
-        return wait
-            .until(ExpectedConditions
-                .elementToBeClickable(By.xpath("//span[text()='Self: " + title + number + "']"))).isDisplayed();
-    }
-
-    public void openNewLetter(String title, int number) {
-        wait
-            .until(ExpectedConditions
-                .elementToBeClickable(By.xpath("//span[text()='" + title + number + "']"))).click();
-    }
 }

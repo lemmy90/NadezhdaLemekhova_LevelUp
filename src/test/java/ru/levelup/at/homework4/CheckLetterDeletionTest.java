@@ -52,11 +52,13 @@ public class CheckLetterDeletionTest extends AbstractBaseLettersTest {
         //go to inbound
         mailboxHomePage.goToInboxFolder();
 
+        MailRuLetterList letterList = new MailRuLetterList(driver);
+
         //check that letter is shown in inbound folder
-        Assert.assertTrue(newLetter.isNewLetterDisplayed(LETTER_TITLE, random));
+        Assert.assertTrue(letterList.isNewLetterDisplayed(LETTER_TITLE, random));
 
         //open letter
-        newLetter.openNewLetter(LETTER_TITLE, random);
+        letterList.openNewLetter(LETTER_TITLE, random);
 
         MailRuSentLetterPage sentLetter = new MailRuSentLetterPage(driver);
 
@@ -76,7 +78,7 @@ public class CheckLetterDeletionTest extends AbstractBaseLettersTest {
         mailboxHomePage.goToTrashFolder();
 
         //check that letter is shown in the Test folder
-        Assert.assertTrue(newLetter.isNewLetterDisplayed(LETTER_TITLE, random));
+        Assert.assertTrue(letterList.isNewLetterDisplayed(LETTER_TITLE, random));
 
         //open personal menu
         mailboxHomePage.openPersonalMenu();

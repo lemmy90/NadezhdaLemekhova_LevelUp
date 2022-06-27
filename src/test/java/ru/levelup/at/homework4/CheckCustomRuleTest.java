@@ -55,17 +55,19 @@ public class CheckCustomRuleTest extends AbstractBaseLettersTest {
         //go to sent
         mailboxHomePage.goToSentFolder();
 
+        MailRuLetterList letterList = new MailRuLetterList(driver);
+
         //check that letter is shown in sent folder
-        Assert.assertTrue(newLetter.isSelfNewLetterDisplayed(LETTER_TITLE_CUSTOM, random));
+        Assert.assertTrue(letterList.isSelfNewLetterDisplayed(LETTER_TITLE_CUSTOM, random));
 
         //go to test
         mailboxHomePage.goToTestFolder();
 
         //check that letter is shown in the Test folder
-        Assert.assertTrue(newLetter.isNewLetterDisplayed(LETTER_TITLE_CUSTOM, random));
+        Assert.assertTrue(letterList.isNewLetterDisplayed(LETTER_TITLE_CUSTOM, random));
 
         //open letter
-        newLetter.openNewLetter(LETTER_TITLE_CUSTOM, random);
+        letterList.openNewLetter(LETTER_TITLE_CUSTOM, random);
 
         MailRuSentLetterPage sentLetter = new MailRuSentLetterPage(driver);
 

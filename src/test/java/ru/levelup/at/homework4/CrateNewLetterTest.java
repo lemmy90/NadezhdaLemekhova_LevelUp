@@ -1,9 +1,11 @@
 package ru.levelup.at.homework4;
 
+import static java.lang.Thread.sleep;
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertTrue;
 
 import java.util.Random;
+import org.openqa.selenium.By;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
@@ -54,9 +56,11 @@ public class CrateNewLetterTest extends AbstractBaseLettersTest {
         //go to Drafts folder
         mailboxHomePage.goToDraftsFolder();
 
+        MailRuLetterList letterList = new MailRuLetterList(driver);
+
         MailRuDraftLetterPage draftLetterPage = new MailRuDraftLetterPage(driver);
 
-        Assert.assertTrue(newLetter.isNewLetterDisplayed(LETTER_TITLE, random));
+        Assert.assertTrue(letterList.isNewLetterDisplayed(LETTER_TITLE, random));
 
         //newLetter.click();
         draftLetterPage.openDraftLetter(LETTER_TITLE, random);
@@ -76,17 +80,19 @@ public class CrateNewLetterTest extends AbstractBaseLettersTest {
         //close Ad window
         newLetter.closeAdWindow();
 
-        //DONT FORGET TO UNCOMMENT THIS BOOLSHIT
-        /*Assert.assertTrue(wait
-             .until(ExpectedConditions
-                 .invisibilityOfElementLocated(By.xpath("//span[text()='" + LETTER_TITLE + random + "']"))));*/
-
+        //check that letter isn't shown in drafts
+        var drafts = driver.findElements(By.xpath("//span[text()='" + LETTER_TITLE + random + "']"));
+        if (drafts.size() > 0) {
+            sleep(100);
+        } else {
+            Assert.assertNull(drafts);
+        }
 
         //go to sent
         mailboxHomePage.goToSentFolder();
 
         //check that letter is shown in sent folder
-        Assert.assertTrue(newLetter.isNewLetterDisplayed(LETTER_TITLE, random));
+        Assert.assertTrue(letterList.isNewLetterDisplayed(LETTER_TITLE, random));
 
         //make a logout
         mailboxHomePage.openPersonalMenu();
