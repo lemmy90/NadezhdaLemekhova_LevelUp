@@ -33,6 +33,7 @@
         <suites.base.dir>${test.resources.base.dir}/ru/levelup/at</suites.base.dir>
         <homework2.suite.base.dir>${suites.base.dir}/homework2/build/unit/testing/tools/suites</homework2.suite.base.dir>
         <homework3.suite.base.dir>${suites.base.dir}/homework3</homework3.suite.base.dir>
+        <homework4.suite.base.dir>${suites.base.dir}/homework4</homework4.suite.base.dir>
     </properties>
 
     <profiles>
@@ -161,7 +162,7 @@
                 <version>${maven-surefire-plugin.version}</version>
                 <configuration>
                     <suiteXmlFiles>
-                        ${homework3.suite.base.dir}/${test.suite.name}
+                        ${homework4.suite.base.dir}/${test.suite.name}
                     </suiteXmlFiles>
                 </configuration>
             </plugin>
