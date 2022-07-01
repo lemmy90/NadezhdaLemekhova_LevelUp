@@ -8,10 +8,7 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-public class MailRuHomePage {
-
-    private WebDriver driver;
-    private WebDriverWait wait;
+public class MailRuHomePage extends MailRuBasePage {
 
     private static final String MAILRU_URL = "https://mail.ru/";
 
@@ -19,9 +16,7 @@ public class MailRuHomePage {
     private WebElement enterButton;
 
     public MailRuHomePage(WebDriver driver) {
-        this.driver = driver;
-        PageFactory.initElements(driver, this);
-        wait = new WebDriverWait(driver, Duration.ofSeconds(20));
+        super(driver);
     }
 
     public void open() {

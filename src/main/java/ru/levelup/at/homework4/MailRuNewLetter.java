@@ -9,10 +9,7 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-public class MailRuNewLetter {
-
-    private WebDriver driver;
-    private WebDriverWait wait;
+public class MailRuNewLetter extends MailRuBasePage {
 
     @FindBy(xpath = "//div[@class='contacts--1ofjA']//input")
     WebElement mailToField;
@@ -36,9 +33,7 @@ public class MailRuNewLetter {
     WebElement closeAdButton;
 
     public MailRuNewLetter(WebDriver driver) {
-        this.driver = driver;
-        PageFactory.initElements(driver, this);
-        wait = new WebDriverWait(driver, Duration.ofSeconds(20));
+        super(driver);
     }
 
     public void fillInMailToField(final String address) {

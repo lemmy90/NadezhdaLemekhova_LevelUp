@@ -9,10 +9,7 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-public class MailRuDraftLetterPage {
-
-    private WebDriver driver;
-    private WebDriverWait wait;
+public class MailRuDraftLetterPage extends MailRuBasePage {
 
     @FindBy(name = "Subject")
     private WebElement draftLetterTitle;
@@ -27,9 +24,7 @@ public class MailRuDraftLetterPage {
     private WebElement draftSendButton;
 
     public MailRuDraftLetterPage(WebDriver driver) {
-        this.driver = driver;
-        PageFactory.initElements(driver, this);
-        wait = new WebDriverWait(driver, Duration.ofSeconds(20));
+        super(driver);
     }
 
 

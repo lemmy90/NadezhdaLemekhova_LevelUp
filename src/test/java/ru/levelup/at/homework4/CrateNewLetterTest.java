@@ -4,6 +4,10 @@ import static java.lang.Thread.sleep;
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertTrue;
 
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.Properties;
 import java.util.Random;
 import org.openqa.selenium.By;
 import org.testng.Assert;
@@ -13,21 +17,9 @@ public class CrateNewLetterTest extends AbstractBaseLettersTest {
 
     @SuppressWarnings("checkstyle:Indentation")
     @Test
-    public void createNewLetterTest() throws InterruptedException {
+    public void createNewLetterTest() throws IOException, InterruptedException {
 
-        MailRuHomePage homePage = new MailRuHomePage(driver);
-
-        //open mailru and click enter button
-        homePage.open();
-        homePage.clickEnterButton();
-
-        MailRuAuthorisationWindow authorisationWindow = new MailRuAuthorisationWindow(driver);
-
-        authorisationWindow.switchToAuthorisationWindow();
-        authorisationWindow.fillUsernameInputField(USERNAME);
-        authorisationWindow.clickEnterPasswordButton();
-        authorisationWindow.fillPasswordInputField(PASSWORD);
-        authorisationWindow.clickSignInButton();
+        login();
 
         MailRuMailboxHomePage mailboxHomePage = new MailRuMailboxHomePage(driver);
         assertTrue(mailboxHomePage.checkPersonalMenuShown());

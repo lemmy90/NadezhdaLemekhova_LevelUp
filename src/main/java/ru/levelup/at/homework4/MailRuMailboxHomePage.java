@@ -1,17 +1,12 @@
 package ru.levelup.at.homework4;
 
-import java.time.Duration;
+
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
-public class MailRuMailboxHomePage {
-
-    WebDriver driver;
-    WebDriverWait wait;
+public class MailRuMailboxHomePage extends MailRuBasePage {
 
     @FindBy(xpath = "//span[text()='levelup_spring@mail.ru']")
     WebElement personalMenu;
@@ -38,9 +33,7 @@ public class MailRuMailboxHomePage {
     WebElement logoutButton;
 
     public MailRuMailboxHomePage(WebDriver driver) {
-        this.driver = driver;
-        PageFactory.initElements(driver, this);
-        wait = new WebDriverWait(driver, Duration.ofSeconds(20));
+        super(driver);
     }
 
     public boolean checkPersonalMenuShown() {

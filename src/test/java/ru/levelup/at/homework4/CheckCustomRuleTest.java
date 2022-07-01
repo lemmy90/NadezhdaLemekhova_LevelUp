@@ -5,6 +5,11 @@ import static org.openqa.selenium.By.name;
 import static org.openqa.selenium.By.xpath;
 import static org.testng.Assert.assertTrue;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.Properties;
 import java.util.Random;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
@@ -15,18 +20,9 @@ import org.testng.annotations.Test;
 public class CheckCustomRuleTest extends AbstractBaseLettersTest {
 
     @Test
-    public void checkCustomRuleTest() {
+    public void checkCustomRuleTest() throws IOException {
 
-        MailRuHomePage homePage = new MailRuHomePage(driver);
-        homePage.open();
-        homePage.clickEnterButton();
-
-        MailRuAuthorisationWindow authorisationWindow = new MailRuAuthorisationWindow(driver);
-        authorisationWindow.switchToAuthorisationWindow();
-        authorisationWindow.fillUsernameInputField(USERNAME);
-        authorisationWindow.clickEnterPasswordButton();
-        authorisationWindow.fillPasswordInputField(PASSWORD);
-        authorisationWindow.clickSignInButton();
+        login();
 
         //check that login is successful
         MailRuMailboxHomePage mailboxHomePage = new MailRuMailboxHomePage(driver);

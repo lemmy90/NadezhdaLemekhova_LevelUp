@@ -8,10 +8,7 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-public class MailRuAuthorisationWindow {
-
-    private WebDriver driver;
-    private WebDriverWait wait;
+public class MailRuAuthorisationWindow extends MailRuBasePage {
 
     @FindBy(css = "div > iframe[class ='ag-popup__frame__layout__iframe']")
     private WebElement singInWindow;
@@ -29,9 +26,7 @@ public class MailRuAuthorisationWindow {
     private WebElement signInButton;
 
     public MailRuAuthorisationWindow(WebDriver driver) {
-        this.driver = driver;
-        PageFactory.initElements(driver, this);
-        wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        super(driver);
     }
 
     public void switchToAuthorisationWindow() {

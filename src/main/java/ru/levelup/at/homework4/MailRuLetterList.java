@@ -1,21 +1,13 @@
 package ru.levelup.at.homework4;
 
-import java.time.Duration;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
-public class MailRuLetterList {
-
-    WebDriver driver;
-    WebDriverWait wait;
+public class MailRuLetterList extends MailRuBasePage {
 
     public MailRuLetterList(WebDriver driver) {
-        this.driver = driver;
-        PageFactory.initElements(driver, this);
-        wait = new WebDriverWait(driver, Duration.ofSeconds(20));
+        super(driver);
     }
 
     public boolean isNewLetterDisplayed(String title, int number) {

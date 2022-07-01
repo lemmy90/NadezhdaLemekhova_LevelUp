@@ -2,6 +2,11 @@ package ru.levelup.at.homework4;
 
 import static org.testng.Assert.assertTrue;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.Properties;
 import java.util.Random;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
@@ -12,18 +17,9 @@ import org.testng.annotations.Test;
 public class CheckLetterDeletionTest extends AbstractBaseLettersTest {
 
     @Test
-    public void checkLetterDeletionTest() {
+    public void checkLetterDeletionTest() throws IOException {
 
-        MailRuHomePage homePage = new MailRuHomePage(driver);
-        homePage.open();
-        homePage.clickEnterButton();
-
-        MailRuAuthorisationWindow authorisationWindow = new MailRuAuthorisationWindow(driver);
-        authorisationWindow.switchToAuthorisationWindow();
-        authorisationWindow.fillUsernameInputField(USERNAME);
-        authorisationWindow.clickEnterPasswordButton();
-        authorisationWindow.fillPasswordInputField(PASSWORD);
-        authorisationWindow.clickSignInButton();
+        login();
 
         MailRuMailboxHomePage mailboxHomePage = new MailRuMailboxHomePage(driver);
         assertTrue(mailboxHomePage.checkPersonalMenuShown());

@@ -73,12 +73,19 @@
         </profile>
 
         <profile>
-            <id>mailru-tests</id>
+            <id>h3-mailru-tests</id>
+            <properties>
+                <test.suite.name>homework3/mailruTests.xml</test.suite.name>
+            </properties>
+        </profile>
+
+        <profile>
+            <id>h4-mailru-tests</id>
             <activation>
                 <activeByDefault>true</activeByDefault>
             </activation>
             <properties>
-                <test.suite.name>mailruTests.xml</test.suite.name>
+                <test.suite.name>homework4/mailruTests.xml</test.suite.name>
             </properties>
         </profile>
     </profiles>
@@ -162,7 +169,7 @@
                 <version>${maven-surefire-plugin.version}</version>
                 <configuration>
                     <suiteXmlFiles>
-                        ${homework4.suite.base.dir}/${test.suite.name}
+                        ${suites.base.dir}/${test.suite.name}
                     </suiteXmlFiles>
                 </configuration>
             </plugin>

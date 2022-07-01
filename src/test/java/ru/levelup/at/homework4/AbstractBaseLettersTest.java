@@ -1,13 +1,19 @@
 package ru.levelup.at.homework4;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
 import java.time.Duration;
+import java.util.Properties;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeSuite;
+import org.testng.annotations.BeforeTest;
 
 public abstract class AbstractBaseLettersTest {
 
@@ -28,7 +34,7 @@ public abstract class AbstractBaseLettersTest {
     }
 
     @BeforeMethod
-    public void setUp() {
+    public void setUp() throws IOException {
         driver = new ChromeDriver();
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(60));
         driver.manage().window().maximize();
@@ -37,6 +43,27 @@ public abstract class AbstractBaseLettersTest {
 
     @AfterMethod
     public void tearDown() {
+
         driver.quit();
+    }
+
+    protected void login() throws IOException {
+        InputStream input = new
+            FileInputStream("/Users/nlemekhova/projects/NadezhdaLemekhova_LevelUp/"
+            + "src/test/resources/config/mailru.properties");
+
+        Properties prop = new Properties();
+        prop.load(input);
+
+        MailRuHomePage homePage = new MailRuHomePage(driver);
+        homePage.open();
+        homePage.clickEnterButton();
+
+        MailRuAuthorisationWindow authorisationWindow = new MailRuAuthorisationWindow(driver);
+        authorisationWindow.switchToAuthorisationWindow();
+        authorisationWindow.fillUsernameInputField(prop.getProperty("username"));
+        authorisationWindow.clickEnterPasswordButton();
+        authorisationWindow.fillPasswordInputField(prop.getProperty("password"));
+        authorisationWindow.clickSignInButton();
     }
 }
