@@ -1,0 +1,10 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
+<suite name="MailRu tests">
+  <test name="MailRu tests">
+    <classes>
+      <class name="ru.levelup.at.homework5.test.CrateNewLetterTest"/>
+      <class name="ru.levelup.at.homework5.test.CheckCustomRuleTest"/>
+      <class name="ru.levelup.at.homework5.test.CheckLetterDeletionTest"/>
+    </classes>
+  </test>
+</suite>

@@ -81,11 +81,18 @@
 
         <profile>
             <id>h4-mailru-tests</id>
+            <properties>
+                <test.suite.name>homework4/mailruTests.xml</test.suite.name>
+            </properties>
+        </profile>
+
+        <profile>
+            <id>h5-mailru-tests</id>
             <activation>
                 <activeByDefault>true</activeByDefault>
             </activation>
             <properties>
-                <test.suite.name>homework4/mailruTests.xml</test.suite.name>
+                <test.suite.name>homework5/mailruTests.xml</test.suite.name>
             </properties>
         </profile>
     </profiles>
