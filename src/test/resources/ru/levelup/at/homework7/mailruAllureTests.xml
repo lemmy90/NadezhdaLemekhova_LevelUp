@@ -1,0 +1,12 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
+<suite name="MailRu Allure tests">
+
+  <listeners>
+    <listener class-name="ru.levelup.at.homework7.listener.AllureListener"></listener>
+  </listeners>
+  <test name="MailRu Allure tests">
+    <packages>
+      <package name="ru.levelup.at.homework7.test.*"></package>
+    </packages>
+  </test>
+</suite>

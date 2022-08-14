@@ -17,19 +17,22 @@
         <checkstyle.version>10.2</checkstyle.version>
         <testng.version>7.6.0</testng.version>
         <commons-io.version>2.11.0</commons-io.version>
-        <selenium-java.version>4.2.2</selenium-java.version>
-        <webdrivermanager.version>5.2.0</webdrivermanager.version>
+        <selenium-java.version>4.4.0</selenium-java.version>
+        <webdrivermanager.version>5.2.3</webdrivermanager.version>
         <javafaker.version>1.0.2</javafaker.version>
         <snakeyaml.version>1.30</snakeyaml.version>
         <rest-assured.version>5.1.1</rest-assured.version>
         <lombok.version>1.18.24</lombok.version>
         <jackson-databind.version>2.13.3</jackson-databind.version>
+        <allure-testng.version>2.18.1</allure-testng.version>
 
         <!-- Plugins -->
         <maven-compiler-plugin.version>3.10.1</maven-compiler-plugin.version>
         <maven-resources-plugin.version>3.2.0</maven-resources-plugin.version>
         <maven-checkstyle-plugin.version>3.1.2</maven-checkstyle-plugin.version>
         <maven-surefire-plugin.version>3.0.0-M7</maven-surefire-plugin.version>
+        <allure-maven.version>2.11.2</allure-maven.version>
+        <aspectj.version>1.9.7</aspectj.version>
 
         <!-- Project properties -->
         <test.resources.base.dir>${project.basedir}/src/test/resources</test.resources.base.dir>
@@ -37,6 +40,7 @@
         <homework2.suite.base.dir>${suites.base.dir}/homework2/build/unit/testing/tools/suites</homework2.suite.base.dir>
         <homework3.suite.base.dir>${suites.base.dir}/homework3</homework3.suite.base.dir>
         <homework4.suite.base.dir>${suites.base.dir}/homework4</homework4.suite.base.dir>
+
     </properties>
 
     <profiles>
@@ -91,11 +95,18 @@
 
         <profile>
             <id>h5-mailru-tests</id>
+            <properties>
+                <test.suite.name>homework5/mailruTests.xml</test.suite.name>
+            </properties>
+        </profile>
+
+        <profile>
+            <id>h7-mailru-allure</id>
             <activation>
                 <activeByDefault>true</activeByDefault>
             </activation>
             <properties>
-                <test.suite.name>homework5/mailruTests.xml</test.suite.name>
+                <test.suite.name>homework7/mailruAllureTests.xml</test.suite.name>
             </properties>
         </profile>
     </profiles>
@@ -170,6 +181,12 @@
             <artifactId>jackson-databind</artifactId>
             <version>${jackson-databind.version}</version>
         </dependency>
+
+        <dependency>
+            <groupId>io.qameta.allure</groupId>
+            <artifactId>allure-testng</artifactId>
+            <version>${allure-testng.version}</version>
+        </dependency>
     </dependencies>
 
     <build>
@@ -200,7 +217,18 @@
                     <suiteXmlFiles>
                         ${suites.base.dir}/${test.suite.name}
                     </suiteXmlFiles>
+                    <argLine>
+                        -javaagent:"${settings.localRepository}/org/aspectj/aspectjweaver/${aspectj.version}/aspectjweaver-${aspectj.version}.jar"
+                        -Dcucumber.options="--plugin io.qameta.allure.cucumber4jvm.AllureCucumber4Jvm"
+                    </argLine>
                 </configuration>
+                <dependencies>
+                    <dependency>
+                        <groupId>org.aspectj</groupId>
+                        <artifactId>aspectjweaver</artifactId>
+                        <version>${aspectj.version}</version>
+                    </dependency>
+                </dependencies>
             </plugin>
 
             <plugin>
@@ -237,5 +265,19 @@
             </plugin>
         </plugins>
     </build>
+
+    <reporting>
+        <excludeDefaults>true</excludeDefaults>
+        <plugins>
+            <plugin>
+                    <groupId>io.qameta.allure</groupId>
+                    <artifactId>allure-maven</artifactId>
+                    <version>${allure-maven.version}</version>
+                <configuration>
+                    <reportVersion>${allure-testng.version}</reportVersion>
+                </configuration>
+            </plugin>
+        </plugins>
+    </reporting>
 
 </project>
