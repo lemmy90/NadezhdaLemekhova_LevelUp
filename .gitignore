@@ -10,3 +10,5 @@ target
 *.iml
 .idea
 **/.DS_Store
+allure-results
+.allure
